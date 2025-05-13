@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>تحليل أمان الإطار - عمودين ورافترين</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>تحليل أمان الإطار - عمودين ورافترين</h1>
+        <form id="frameForm">
+            <!-- بيانات العمود الأيسر -->
+            <h3>بيانات العمود الأيسر</h3>
+            <label>عرض الجناح bf (مم)</label>
+            <input type="number" id="bf_c1" required>
+            <label>سمك الجناح tf (مم)</label>
+            <input type="number" id="tf_c1" required>
+            <label>سمك الجسم tw (مم)</label>
+            <input type="number" id="tw_c1" required>
+            <label>ارتفاع الجسم hw (مم)</label>
+            <input type="number" id="hw_c1" required>
+
+            <!-- بيانات العمود الأيمن -->
+            <h3>بيانات العمود الأيمن</h3>
+            <label>عرض الجناح bf (مم)</label>
+            <input type="number" id="bf_c2" required>
+            <label>سمك الجناح tf (مم)</label>
+            <input type="number" id="tf_c2" required>
+            <label>سمك الجسم tw (مم)</label>
+            <input type="number" id="tw_c2" required>
+            <label>ارتفاع الجسم hw (مم)</label>
+            <input type="number" id="hw_c2" required>
+
+            <!-- إضافة خيار العمود الأوسط -->
+            <h3>هل يوجد عمود وسط؟</h3>
+            <select id="hasMiddleColumn" onchange="toggleMiddleColumn()">
+                <option value="no">لا</option>
+                <option value="yes">نعم</option>
+            </select>
+
+            <!-- إذا تم اختيار "نعم" يتم إظهار المدخلات الخاصة بالعمود الأوسط -->
+            <div id="middleColumn" style="display: none;">
+                <h3>بيانات العمود الأوسط</h3>
+                <label>عرض الجناح bf (مم)</label>
+                <input type="number" id="bf_c3">
+                <label>سمك الجناح tf (مم)</label>
+                <input type="number" id="tf_c3">
+                <label>سمك الجسم tw (مم)</label>
+                <input type="number" id="tw_c3">
+                <label>ارتفاع الجسم hw (مم)</label>
+                <input type="number" id="hw_c3">
+            </div>
+
+            <!-- بيانات الرافتر -->
+            <h3>بيانات الرافتر الأيسر</h3>
+            <label>عرض الجناح bf (مم)</label>
+            <input type="number" id="bf_r1" required>
+            <label>سمك الجناح tf (مم)</label>
+            <input type="number" id="tf_r1" required>
+            <label>سمك الجسم tw (مم)</label>
+            <input type="number" id="tw_r1" required>
+            <label>ارتفاع الجسم hw (مم)</label>
+            <input type="number" id="hw_r1" required>
+
+            <h3>بيانات الرافتر الأيمن</h3>
+            <label>عرض الجناح bf (مم)</label>
+            <input type="number" id="bf_r2" required>
+            <label>سمك الجناح tf (مم)</label>
+            <input type="number" id="tf_r2" required>
+            <label>سمك الجسم tw (مم)</label>
+            <input type="number" id="tw_r2" required>
+            <label>ارتفاع الجسم hw (مم)</label>
+            <input type="number" id="hw_r2" required>
+
+            <h3>بيانات عامة</h3>
+            <label>ارتفاع العمود (م)</label>
+            <input type="number" id="H" required>
+            <label>أقصى ارتفاع للجملون (م)</label>
+            <input type="number" id="H_total" required>
+            <label>فتحة المبنى (م)</label>
+            <input type="number" id="span" required>
+            <label>المسافة بين الإطارات (م)</label>
+            <input type="number" id="spacing" required>
+            <label>الحمل على السقف (كجم/م²)</label>
+            <input type="number" id="load_kg" required>
+            <label>إجهاد الخضوع fy (MPa)</label>
+            <input type="number" id="fy" value="355" required>
+            <label>معامل الأمان</label>
+            <select id="FS">
+                <option value="1.5">1.5</option>
+                <option value="2">2</option>
+            </select>
+            <label>حالة تثبيت العمود (معامل K)</label>
+            <select id="K">
+                <option value="1.0">مثبت من الطرفين (K = 1.0)</option>
+                <option value="2.0">طرف حر وآخر مثبت (K = 2.0)</option>
+                <option value="0.7">مثبت من الرأس فقط (K = 0.7)</option>
+                <option value="1.2">مثبت من المنتصف (K = 1.2)</option>
+            </select>
+
+            <button type="button" onclick="calculate()">تحليل الإطار</button>
+        </form>
+
+        <pre id="results"></pre>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
